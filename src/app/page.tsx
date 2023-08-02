@@ -3,16 +3,24 @@ import ProductCard from '@/components/ProductCard';
 import { prisma } from '@/lib/db/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default async function Home() {
+  // useEffect(() => {
+  //   if ("serviceWorker" in navigator) {
+  //     navigator.serviceWorker
+  //       .register("/service-worker.js")
+  //       .then((registration) => console.log("scope is: ", registration.scope));
+  //   }
+  // }, []);
 
   const products = await prisma.product.findMany({ orderBy: { id: "desc" }, })
 
   return (
-    <div> 
+    <div>
       <div className='hero rounded-xl bg-base-200'>
         <div className='hero-content flex-col lg:flex-row'>
-          <Image 
+          <Image
             src={products[0].imageUrl}
             alt={products[0].name}
             width={400}
@@ -23,8 +31,8 @@ export default async function Home() {
           <div>
             <h1 className='text-5xl font-bold'>{products[0].name}</h1>
             <p className='py-6'>{products[0].description}</p>
-            <Link 
-              href={"/products/"+ products[0].id}
+            <Link
+              href={"/products/" + products[0].id}
               className='btn-primary btn'
             >
               Check It Out
@@ -33,8 +41,8 @@ export default async function Home() {
         </div>
       </div>
       <div className='my-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'>
-        {products.slice(1).map(product=> (
-          <ProductCard product={product} key={product.id}/>
+        {products.slice(1).map(product => (
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
     </div>
