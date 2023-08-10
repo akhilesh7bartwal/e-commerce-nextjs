@@ -47,7 +47,7 @@ export default function CartEntry({cartItem: {product, quantity}, setProductQuan
                             defaultValue={quantity}
                             onChange={(e) => {
                                 const newQuantity = parseInt(e.currentTarget.value)
-                                startTransition(async ()=> {
+                                startTransition(async () => {
                                     await setProductQuantity(product.id, newQuantity)
                                 })
                             }}

@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'FlapCart',
   description: 'you say we provide',
-  manifest: '/manifest.webmanifest',
+  manifest: '/manifest.webmanifest'
 }
 
 export default function RootLayout({
